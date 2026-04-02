@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const AnimatedCounter = ({ end, display, label }: { end: number; display: string; label: string }) => {
   const [count, setCount] = useState(0);
@@ -116,13 +117,23 @@ export { CountdownTicker };
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-28 pb-20">
-      <div className="section-container">
+    <section className="min-h-screen flex flex-col justify-center pt-28 pb-20 relative overflow-hidden">
+      {/* Subtle static gradient for depth */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,152,94,0.03) 0%, transparent 70%)",
+        }}
+      />
+      <div className="section-container relative z-10">
         {/* Title */}
         <div className="text-center mb-6">
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontSize: "clamp(2.5rem, 6vw, 4rem)",
               fontWeight: 300,
               letterSpacing: "-0.02em",
               lineHeight: 1.15,
@@ -131,10 +142,15 @@ const HeroSection = () => {
           >
             L'entretien de personnalité pèse jusqu'à{" "}
             <span className="text-hero-accent">50%</span> de la note aux oraux.
-          </h1>
-          <p className="mt-6 text-xl md:text-2xl text-[var(--text-muted)] leading-relaxed max-w-2xl mx-auto font-light">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-6 text-xl md:text-2xl text-[var(--text-muted)] leading-relaxed max-w-2xl mx-auto font-light"
+          >
             Et un levier de progression souvent sous-exploité, même dans les meilleures prépas.
-          </p>
+          </motion.p>
         </div>
 
         {/* Countdown */}

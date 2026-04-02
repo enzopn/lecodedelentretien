@@ -1,5 +1,6 @@
 import { Boxes, Search, Eye, Compass } from "lucide-react";
 import TriangleFramework from "./TriangleFramework";
+import { FadeUp, StaggerContainer, StaggerItem, ScaleIn, ParallaxImage, AnimatedCounter } from "./Animations";
 
 const howIWork = [
   {
@@ -26,7 +27,7 @@ const howIWork = [
 
 const AccompagnementSection = () => {
   return (
-    <section id="accompagnement" className="py-20 lg:py-28 bg-[var(--surface)]">
+    <section id="accompagnement" className="py-20 lg:py-28 bg-[var(--surface)] overflow-hidden">
       <div className="section-container">
         {/* Header */}
         <div className="text-center mb-6">
@@ -45,23 +46,25 @@ const AccompagnementSection = () => {
         </div>
 
         {/* Comment je travaille.2x2 grid */}
-        <div className="grid gap-4 md:grid-cols-2 max-w-5xl mx-auto mt-12 mb-16">
+        <StaggerContainer className="grid gap-4 md:grid-cols-2 max-w-5xl mx-auto mt-12 mb-16">
           {howIWork.map((item) => (
-            <div key={item.title} className="card-finox p-5 md:p-6">
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-lg bg-[var(--accent-mint-bg)] border border-[var(--accent-mint)]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <item.icon size={18} className="text-[var(--accent-mint)]" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-sm font-medium text-[var(--text-primary)] mb-1.5 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-[var(--text-muted)] leading-relaxed">{item.desc}</p>
+            <StaggerItem key={item.title}>
+              <div className="card-finox p-5 md:p-6">
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-lg bg-[var(--accent-mint-bg)] border border-[var(--accent-mint)]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <item.icon size={18} className="text-[var(--accent-mint)]" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-medium text-[var(--text-primary)] mb-1.5 leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-[var(--text-muted)] leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Transition vers les piliers */}
         <div className="max-w-3xl mx-auto mt-16 mb-10">
@@ -79,10 +82,8 @@ const AccompagnementSection = () => {
         {/* Les 3 piliers.avec photos */}
         <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto mb-14">
           {/* Pilier 1.Workbook */}
-          <div className="card-finox p-0 overflow-hidden flex flex-col">
-            <div className="h-48 overflow-hidden">
-              <img src="/photo-conference.png" alt="Le Code de l'Entretien" className="w-full h-full object-cover" />
-            </div>
+          <div className="card-finox p-0 overflow-hidden flex flex-col group">
+            <ParallaxImage src="/photo-conference.png" alt="Le Code de l'Entretien" className="h-48" />
             <div className="p-6 md:p-8 flex flex-col flex-1">
               <p className="text-[11px] uppercase tracking-widest text-[var(--accent-warm)] font-medium mb-2">PILIER 1</p>
               <h3 className="text-lg md:text-xl font-medium text-[var(--text-primary)] mb-1 leading-snug">Le Workbook</h3>
@@ -94,10 +95,8 @@ const AccompagnementSection = () => {
           </div>
 
           {/* Pilier 2.Sessions collectives */}
-          <div className="card-finox p-0 overflow-hidden flex flex-col">
-            <div className="h-48 overflow-hidden">
-              <img src="/photo-session.png" alt="Session collective" className="w-full h-full object-cover" />
-            </div>
+          <div className="card-finox p-0 overflow-hidden flex flex-col group">
+            <ParallaxImage src="/photo-session.png" alt="Session collective" className="h-48" />
             <div className="p-6 md:p-8 flex flex-col flex-1">
               <p className="text-[11px] uppercase tracking-widest text-[var(--accent-warm)] font-medium mb-2">PILIER 2</p>
               <h3 className="text-lg md:text-xl font-medium text-[var(--text-primary)] mb-1 leading-snug">Les sessions collectives</h3>
@@ -109,10 +108,8 @@ const AccompagnementSection = () => {
           </div>
 
           {/* Pilier 3.Coaching individuel */}
-          <div className="card-finox p-0 overflow-hidden flex flex-col">
-            <div className="h-48 overflow-hidden">
-              <img src="/photo-coaching.png" alt="Coaching individuel" className="w-full h-full object-cover" />
-            </div>
+          <div className="card-finox p-0 overflow-hidden flex flex-col group">
+            <ParallaxImage src="/photo-coaching.png" alt="Coaching individuel" className="h-48" />
             <div className="p-6 md:p-8 flex flex-col flex-1">
               <p className="text-[11px] uppercase tracking-widest text-[var(--accent-warm)] font-medium mb-2">PILIER 3</p>
               <h3 className="text-lg md:text-xl font-medium text-[var(--text-primary)] mb-1 leading-snug">Le coaching individuel</h3>
@@ -135,57 +132,58 @@ const AccompagnementSection = () => {
           </div>
         </div>
 
-        {/* La Méthode des 3 Temps */}
-        <div className="max-w-3xl mx-auto mb-8 mt-16">
-          <div className="text-center">
-            <div className="pill-badge mb-4 mx-auto">
-              <span className="pill-dot" />
-              LA MÉTHODE
+        {/* Method - full width dark section */}
+        </div>{/* close section-container temporarily */}
+        <div className="px-6 md:px-8 py-16 mt-16" style={{ background: "linear-gradient(145deg, #0D1117 0%, #161B22 50%, #0D1117 100%)", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)", width: "100vw" }}>
+          <div className="section-container">
+            {/* La Méthode des 3 Temps */}
+            <div className="max-w-3xl mx-auto mb-8">
+              <div className="text-center">
+                <div className="pill-badge mb-4 mx-auto" style={{ background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "white" }}>
+                  <span className="pill-dot" />
+                  LA MÉTHODE
+                </div>
+                <h3 className="text-section-title mb-4 text-white" style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", color: "white" }}>
+                  La Méthode des 3 Temps
+                </h3>
+                <p className="text-body max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>
+                  Une méthode construite sur plus de 2 ans et +300 coachings. Trois dimensions, travaillées dans l'ordre :
+                </p>
+              </div>
             </div>
-            <h3 className="text-section-title mb-4" style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>
-              La Méthode des 3 Temps
-            </h3>
-            <p className="text-body max-w-2xl mx-auto">
-              Une méthode construite sur plus de 2 ans et +300 coachings. Trois dimensions, travaillées dans l'ordre :
-            </p>
+
+            {/* Le triangle */}
+            <ScaleIn className="max-w-3xl mx-auto mb-6">
+              <TriangleFramework />
+            </ScaleIn>
+
+            {/* L'équation.version légère */}
+            <div className="text-center mt-10 mb-4">
+              <p className="text-lg md:text-xl font-light tracking-tight text-white">
+                Entretien = <span className="text-[var(--accent-warm)] font-medium">Cohérence</span> x{" "}
+                <span className="text-[var(--accent-warm)] font-medium">Profondeur</span> x{" "}
+                <span className="text-[var(--accent-warm)] font-medium">Impact</span>
+              </p>
+              <p className="text-sm mt-3 max-w-xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+                Cohérence = le fond. Profondeur = la structure. Impact = la forme.
+                Chaque dimension correspond à un outil dédié dans le workbook.
+              </p>
+            </div>
           </div>
         </div>
+        <div className="section-container">{/* reopen section-container */}
 
-        {/* Le triangle */}
-        <div className="max-w-3xl mx-auto mb-6">
-          <TriangleFramework />
-        </div>
-
-        {/* L'équation.version légère */}
-        <div className="text-center mt-10 mb-14">
-          <p className="text-lg md:text-xl font-light text-[var(--text-primary)] tracking-tight">
-            Entretien = <span className="text-[var(--accent-warm)] font-medium">Cohérence</span> x{" "}
-            <span className="text-[var(--accent-warm)] font-medium">Profondeur</span> x{" "}
-            <span className="text-[var(--accent-warm)] font-medium">Impact</span>
-          </p>
-          <p className="text-body-sm mt-3 max-w-xl mx-auto">
-            Cohérence = le fond. Profondeur = la structure. Impact = la forme.
-            Chaque dimension correspond à un outil dédié dans le workbook.
-          </p>
-        </div>
+        {/* spacer after dark section */}
+        <div className="mt-14" />
 
         {/* Stats.après la méthode */}
         <div className="max-w-3xl mx-auto mt-16 mb-10">
           <div className="flex justify-center gap-8 md:gap-14 text-center">
-            <div>
-              <p className="text-3xl md:text-4xl font-light text-[var(--text-primary)] tabular-nums">+5,7 pts</p>
-              <p className="text-xs md:text-sm text-[var(--text-muted)] mt-2">Progression moyenne</p>
-            </div>
+            <AnimatedCounter target={57} display="+5,7 pts" label="Progression moyenne" />
             <div className="w-px bg-[var(--divider)]" />
-            <div>
-              <p className="text-3xl md:text-4xl font-light text-[var(--text-primary)] tabular-nums">300+</p>
-              <p className="text-xs md:text-sm text-[var(--text-muted)] mt-2">Étudiants accompagnés</p>
-            </div>
+            <AnimatedCounter target={300} display="300+" label="Étudiants accompagnés" />
             <div className="w-px bg-[var(--divider)]" />
-            <div>
-              <p className="text-3xl md:text-4xl font-light text-[var(--text-primary)] tabular-nums">4,95/5</p>
-              <p className="text-xs md:text-sm text-[var(--text-muted)] mt-2">Note de satisfaction</p>
-            </div>
+            <AnimatedCounter target={495} display="4,95/5" label="Note de satisfaction" />
           </div>
         </div>
 

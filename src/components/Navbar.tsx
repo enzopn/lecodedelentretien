@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -11,6 +12,9 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { scrollY, scrollYProgress } = useScroll();
+  const navHeight = useTransform(scrollY, [0, 100], [80, 64]);
+  const borderOpacity = useTransform(scrollY, [0, 100], [0, 1]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -19,11 +23,16 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
+    <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || menuOpen ? "backdrop-blur-md bg-[var(--page-bg)]/90 shadow-sm" : ""
       }`}
+      style={{ height: navHeight }}
     >
+      <motion.div
+        className="absolute top-0 left-0 h-[2px] bg-[var(--accent-warm)] origin-left z-50"
+        style={{ scaleX: scrollYProgress, width: "100%" }}
+      />
       <div className="section-container flex items-center justify-between h-20">
         <a href="#" className="text-sm font-medium text-[var(--text-primary)] uppercase tracking-[0.15em]">
           Enzo Petit
@@ -78,7 +87,11 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </nav>
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-px bg-[var(--divider)]"
+        style={{ opacity: borderOpacity }}
+      />
+    </motion.nav>
   );
 };
 

@@ -1,5 +1,6 @@
+import { StaggerContainer, StaggerItem } from "./Animations";
+
 const testimonials = [
-  // Ligne 1 : ESSEC — HEC — ESCP
   {
     quote: "L'accompagnement d'Enzo rend les choses limpides. On sait exactement quoi travailler et dans quel ordre.",
     name: "Anonyme",
@@ -19,7 +20,6 @@ const testimonials = [
     school: "ESCP",
     logo: "/logo-escp.png",
   },
-  // Ligne 2 : EDHEC — emlyon — Skema
   {
     quote: "Tu m'as transformé : de 8 à 20. Ton enseignement est utile pour les entretiens mais aussi pour le restant de ma vie.",
     name: "Elie",
@@ -53,22 +53,24 @@ const TestimonialsSection = () => {
           <h2 className="text-section-title">La méthode vue par ceux qui l'ont utilisée</h2>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+        <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (
-            <div key={i} className="card-finox flex flex-col">
-              <span className="text-4xl text-[var(--accent-warm)] leading-none mb-4">"</span>
-              <p className="text-body-sm flex-1 mb-6">{t.quote}</p>
-              <div className="border-t border-[var(--divider)] pt-4 flex items-center justify-between">
-                <p className="text-sm font-medium text-[var(--text-primary)]">{t.name}</p>
-                {t.logo ? (
-                  <img src={t.logo} alt={t.school} className={`${t.logoHeight || "h-7 md:h-8"} object-contain`} />
-                ) : t.school ? (
-                  <span className="text-xs text-[var(--text-muted)]">{t.school}</span>
-                ) : null}
+            <StaggerItem key={i}>
+              <div className="card-finox flex flex-col h-full">
+                <span className="text-4xl text-[var(--accent-warm)] leading-none mb-4">"</span>
+                <p className="text-body-sm flex-1 mb-6">{t.quote}</p>
+                <div className="border-t border-[var(--divider)] pt-4 flex items-center justify-between">
+                  <p className="text-sm font-medium text-[var(--text-primary)]">{t.name}</p>
+                  {t.logo ? (
+                    <img src={t.logo} alt={t.school} className={`${t.logoHeight || "h-7 md:h-8"} object-contain`} />
+                  ) : t.school ? (
+                    <span className="text-xs text-[var(--text-muted)]">{t.school}</span>
+                  ) : null}
+                </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

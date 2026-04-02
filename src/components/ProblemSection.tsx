@@ -1,4 +1,5 @@
 import { Users, FileText, TrendingDown } from "lucide-react";
+import { StaggerContainer, StaggerItem } from "./Animations";
 
 const painPoints = [
   {
@@ -35,19 +36,21 @@ const ProblemSection = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto mb-14">
+        <StaggerContainer className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto mb-14">
           {painPoints.map((p) => (
-            <div key={p.title} className="card-finox p-6 md:p-8">
-              <div className="w-12 h-12 rounded-xl bg-[var(--accent-warm-bg)] border border-[var(--accent-warm)]/10 flex items-center justify-center mb-5">
-                <p.icon size={22} className="text-[var(--accent-warm)]" />
+            <StaggerItem key={p.title}>
+              <div className="card-finox p-6 md:p-8">
+                <div className="w-12 h-12 rounded-xl bg-[var(--accent-warm-bg)] border border-[var(--accent-warm)]/10 flex items-center justify-center mb-5">
+                  <p.icon size={22} className="text-[var(--accent-warm)]" />
+                </div>
+                <h3 className="text-base md:text-lg font-medium text-[var(--text-primary)] mb-3 leading-snug">
+                  {p.title}
+                </h3>
+                <p className="text-body-sm">{p.desc}</p>
               </div>
-              <h3 className="text-base md:text-lg font-medium text-[var(--text-primary)] mb-3 leading-snug">
-                {p.title}
-              </h3>
-              <p className="text-body-sm">{p.desc}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Concluding line */}
         <div className="max-w-3xl mx-auto text-center">
