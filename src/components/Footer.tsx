@@ -16,7 +16,7 @@ const Footer = () => {
             </div>
             <div className="space-y-2 text-sm">
               <a href="mailto:enzo@lecodedelentretien.fr" className="block hover:text-white transition-colors">enzo@lecodedelentretien.fr</a>
-              <a href="https://www.linkedin.com/in/enzopetit" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/petit-enzo" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors">LinkedIn</a>
             </div>
           </div>
         </div>

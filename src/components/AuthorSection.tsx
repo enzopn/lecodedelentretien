@@ -31,7 +31,7 @@ const AuthorSection = () => {
             </p>
 
             <div className="flex items-center gap-4 mb-6">
-              <a href="https://www.linkedin.com/in/enzopetit" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--accent-warm)] hover:underline">LinkedIn ↗</a>
+              <a href="https://www.linkedin.com/in/petit-enzo" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--accent-warm)] hover:underline">LinkedIn ↗</a>
               <a href="mailto:enzo@lecodedelentretien.fr" className="text-sm text-[var(--accent-warm)] hover:underline">enzo@lecodedelentretien.fr</a>
             </div>
 
